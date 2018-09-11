@@ -1,12 +1,13 @@
 package ch.shastick
 
 import ch.shastick.immutable.TSEntry
+
 import scala.util.Left
 import scala.annotation.tailrec
 import ch.shastick.immutable.VectorTimeSeries
-import scala.collection.mutable.Builder
+
+import scala.collection.mutable.{ArrayBuffer, Builder}
 import scala.collection.immutable.VectorBuilder
-import scala.collection.mutable.ArrayBuffer
 
 trait TimeSeries[T] {
   
@@ -256,5 +257,5 @@ object TimeSeries {
           // Add the freshly merged entries to the previously done ones, call to self with the remaining entries.
           mergeEithers(done ++ filling ++ TSEntry.mergeSingleToMultiple(head, toMerge)(op))(nextRound)(op)
       }
-  
+
 }
